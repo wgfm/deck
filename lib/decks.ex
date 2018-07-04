@@ -16,7 +16,7 @@ defmodule Decks
 
     Cards.joker
     |> List.duplicate(num_jokers)
-    |> Enum.reduce(deck, fn (deck, card) -> %{deck | cards: [card | deck.cards]} end)
+    |> Enum.reduce(deck, fn (deck, card) -> Deck.add(deck, card) end)
     |> maybe_shuffle(should_shuffle)
   end
 
