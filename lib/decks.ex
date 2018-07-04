@@ -11,7 +11,7 @@ defmodule Decks do
 
     Cards.joker
     |> List.duplicate(opts[:jokers] || 0)
-    |> Enum.reduce(deck, fn (deck, card) -> Deck.add(deck, card) end)
+    |> Enum.reduce(deck, fn (card, deck) -> Deck.add(deck, card) end)
     |> maybe_shuffle(opts[:shuffle])
   end
 
