@@ -5,23 +5,26 @@ defmodule Decks
   @suits = [:spades, :hearts, :clubs, :diamonds]
   @values = [:ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, :jack, :queen, :king]
 
-  def standard_52(shuffle \\ true) do
+  def standard_52(should_shuffle \\ true) do
     cards = for suit <- @suits, value <- @values, do: %Card{suit: suit, value: value}
     %Deck{ cards: cards }
+    |> maybe_shuffle(should_shuffle)
   end
 
-  def standard_52_with_jokers(should_shuffle \\ true) do
-    standard_52(false)
-    |> Deck.add_joker
-    |> Deck.add_joker
-    |> Deck.maybe_shuffle(should_shuffle)
+  def standard_52(num_jokers, should_shuffle \\ true) do
+    deck = standard_52(false)
+
+    Cards.joker
+    |> List.duplicate(num_jokers)
+    |> Enum.reduce(deck, fn (deck, card) -> %{deck | cards: [card | deck.cards]} end)
+    |> maybe_shuffle(should_shuffle)
   end
 
-  def maybe_shuffle(deck, should_shuffle=true) do
+  defp maybe_shuffle(deck, should_shuffle=true) do
     Deck.shuffle(deck)
   end
 
-  def maybe_shuffle(deck, should_shuffle=false) do
+  defp maybe_shuffle(deck, should_shuffle=false) do
     deck
   end
 end
