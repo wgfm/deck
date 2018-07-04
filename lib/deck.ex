@@ -13,8 +13,4 @@ defmodule Deck do
   def add(deck, card) do
     %{deck | cards: [card | deck.cards]}
   end
-
-  def add_joker(deck) do
-    %{deck | cards: [Cards.joker | deck.cards]}
-  end
 end
