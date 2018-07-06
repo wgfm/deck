@@ -4,7 +4,7 @@
 #
 # The Jack suit-change is also implemented in Pile
 defmodule Mau.Pile do
-  defstruct cards: [], jack: nil
+  defstruct cards: []
 
   alias Mau.Pile
 
@@ -22,19 +22,6 @@ defmodule Mau.Pile do
 
   def top(%{cards: [top, _]) do
     top
-  end
-
-  def suit(%{jack: nil} = pile) do
-    Pile.top(pile).suit
-  end
-
-  def suit(%{jack: suit}) do
-    suit
-  end
-
-  def add(pile, %{value: :jack, special: suit} = card) do
-    card = %{card | special: nil}
-    %{pile | cards: [card | pile.cards], jack: suit}
   end
 
   def add(pile, card) do
