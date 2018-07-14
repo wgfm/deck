@@ -1,4 +1,6 @@
 defmodule Mau.Turn do
+  alias Mau.{Game, Player, Pile}
+
   def draw(game) do
     {card, deck} = Deck.draw(game.deck)
 
@@ -12,9 +14,8 @@ defmodule Mau.Turn do
   end
 
   def pass(game) do
-    game
-    |> Game.current_player()
-    |> pass_and_maybe_draw(player)
+    player = Game.current_player(game)
+    pass_and_maybe_draw(game, player)
   end
 
   def play(game, card) do

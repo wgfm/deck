@@ -4,7 +4,7 @@
 defmodule Mau.Game do
   defstruct players: [], deck: nil, pile: nil, action: nil
 
-  alias Mau.{Pile, Player, Game}
+  alias Mau.{Pile, Player, Game, Turn}
 
   def start(num_players) do
     deck = Decks.standard_52(jokers: 2, shuffle: true)
@@ -43,7 +43,7 @@ defmodule Mau.Game do
   # Updating functions
 
   def update_pile(game, pile) do
-    %{game | pile: [card | pile]}
+    %{game | pile: pile}
   end
 
   def update_current_player(%{players: [current | rest]} = game, player) do

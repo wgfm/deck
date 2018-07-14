@@ -20,7 +20,7 @@ defmodule Mau.Pile do
     { %Pile{cards: [top]}, deck }
   end
 
-  def top(%{cards: [top, _]) do
+  def top(%{cards: [top, _]}) do
     top
   end
 

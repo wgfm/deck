@@ -1,13 +1,15 @@
 defmodule Mau.Server do
+  alias Mau.Game
+
   def loop(game) do
     receive do
       :draw ->
         game
-        |> Game.make_move(:draw)
+        |> Game.draw()
         |> loop
       {:play, card} ->
         game
-        |> Game.make_move({:play, card})
+        |> Game.play(card)
         |> loop
     end
   end
