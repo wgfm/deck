@@ -25,6 +25,6 @@ defmodule Mau.Pile do
   end
 
   def add(pile, card) do
-    %{pile | cards: [card | pile.cards], jack: nil}
+    %{pile | cards: [card | pile.cards]}
   end
 end

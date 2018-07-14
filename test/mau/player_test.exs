@@ -2,7 +2,7 @@ defmodule Mau.PlayerTest do
   use ExUnit.Case
 
   test "will start with seven cards" do
-    player = Player.start(deck())
+    {player, _} = Player.start(deck())
     
     assert Player.hand_size(player) == 7
   end
